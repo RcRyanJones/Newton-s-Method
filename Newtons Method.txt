@@ -1,0 +1,15 @@
+%set up systesms
+syms f(x) x
+%for matrix vars
+f(x) = x^2-2;%set func
+g = diff(f);
+tol = 10^(-100000);%set tolerance
+x(1)= 64 ;%initial point
+for i=1:15 %it should be stopped when tolerance is reached
+    fprintf('x%d = %.4f\n ', i, x(i))     
+    x(i+1) = x(i) - f(x(i))/g(x(i));
+        if( abs(f(x(i+1)))<tol)   % tolerance
+            disp(double(x(i+1)));
+            break;
+       end
+end
